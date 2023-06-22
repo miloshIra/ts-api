@@ -1,6 +1,6 @@
 // Import required modules
 import express, { Request, Response } from 'express';
-import { STATUS_CODES } from 'http';
+import os from 'os';
 
 // Create an Express app
 const app = express();
@@ -8,8 +8,19 @@ const app = express();
 // Define a route handler for the root URL
 app.get('/hello', (req: Request, res: Response) => {
   
+  console.log(os.homedir())
+
+  let osData = {
+    total_memory: os.totalmem(),
+    free_memory: os.freemem(),
+    cpu: os.type(),
+    pc_name: os.hostname()
+  }
+
+  console.log(osData)
+
   res.statusCode = 200
-  res.end('Hello, World!')
+  res.end(`<pre>${JSON.stringify(osData)}</pre>`)
 
 });
 
