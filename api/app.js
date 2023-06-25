@@ -1,12 +1,12 @@
-var course = "Hello darkness!";
+"use strict";
+let course = "Hello darkness!";
 console.log(course);
-var printNum = function (start, end) {
-    var temp = '';
+let printNum = (start, end) => {
+    let temp = '';
     if (start < end) {
-        for (var i = start; i <= end; i++) {
-            temp += "".concat(i);
+        for (let i = start; i <= end; i++) {
+            temp += `${i} `;
         }
         console.log(temp);
     }
 };
-printNum(20, 40);
