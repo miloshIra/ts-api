@@ -19,30 +19,21 @@ app.get('/hello', (req: Request, res: Response) => {
     cpu: os.type(),
     pc_name: os.hostname()
   }
-
   console.log(osData)
 
   res.statusCode = 200
   res.end(`<pre>${JSON.stringify(osData)}</pre>`)
-
 });
 
 
 app.get('/json', (req: Request, res: Response) => {
 
   let json = fs.readFile(path.join(__dirname, 'data', 'json.json'),'utf-8', (error, result) => {
-
     if (error) {
-      console.log(error)
-  
+      console.log(error)  
     }
-
-    
-
     res.end(`<pre>${result}</pre>`)
-
   })
-
 })
 
 
@@ -53,29 +44,20 @@ app.get('/', (req:Request, res:Response) => {
 })
 
 
-
 app.get('/files', (req:Request, res:Response) => {
 
   let file = fs.readFile(path.join(__dirname, 'data', 'note.txt'), 'utf-8', (error, result) => {
-
     if (error) {
       console.log(error)
     }
-
     fs.writeFile(path.join(__dirname, 'data', 'data.txt'), result, 'utf-8', (error) => {
-
+      
       if(error) {
         console.log(error)
-      }
-
-      
-
-
+      }   
     })
     res.end(`<pre><h3 style='text-align:center; color:green; margin-top:40px;'>${result}</h3></pre>`)
-
   })
-
 });
 
 
@@ -87,3 +69,12 @@ app.listen(port, () => {
   console.log(`Server running at localhost:(127.0.0.1) port:${port}`)
 
 });
+
+
+app.get('/about', (req:Request, res:Response) => {
+
+  let url:string|undefined 
+  url = "Just retring some things, this just a filler"
+  res.end(url)
+
+})

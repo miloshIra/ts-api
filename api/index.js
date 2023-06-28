@@ -55,3 +55,8 @@ app.listen(port, () => {
     console.log('This is dumb but....it works.');
     console.log(`Server running at localhost:(127.0.0.1) port:${port}`);
 });
+app.get('/about', (req, res) => {
+    let url;
+    url = "Just retring some things, this just a filler";
+    res.end(url);
+});
