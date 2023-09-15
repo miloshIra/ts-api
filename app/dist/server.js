@@ -1,11 +1,10 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const http_1 = __importDefault(require("http"));
-const app_1 = __importDefault(require("./app"));
+const http = require('http');
+const app = require('./app');
 const port = process.env.PORT || 5000;
-const server = http_1.default.createServer(app_1.default);
+const server = http.createServer(app);
 server.listen(port);
-console.log(`Server running on port ${port}`);
+console.log(`Server running on localhost:${port}`);
+console.log(`Debug on or not.. who knows this is js based.`);
+console.log(`.....cling ..clang ...... robot sounds!`);
+console.log(`------------------------------------------------------`);
