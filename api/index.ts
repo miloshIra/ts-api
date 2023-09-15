@@ -3,10 +3,60 @@ import express, { Request, Response } from 'express';
 import os from 'os';
 import path from 'path';
 import fs from 'fs';
+import axios from 'axios'
+import fetch from 'node-fetch'
+
+let region_tags = ['NA', 'EUNE', 'EUW', 'KR', 'BR']
+let API_key = 'RGAPI-ffea1b53-df90-41ef-bba1-64787d57a2c1'
+let my_puuid = 'YA8Rdc9B5E_2pRPTryQS3oMsJI3gNWH1MJhnCPdMgITv3wckL25NUrycnw1JoSOksj84P2jjeCqrmw'
+let game_name = 'SevenxBlades'
+let my_region_tag = 'EUNE'
+let url:string = 'https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/Sevenxblades/EUNE'
+
+interface IAPIOptions {
+    method: string,
+    headers: {
+      "X-RapidAPI-Key":string,
+      "X-RapidAPI-Host":string,
+    }
+}
+
+
+const options: IAPIOptions = {
+      method: "GET",
+      headers: {
+      'X-RapidAPI-Key': API_key,
+      'X-RapidAPI-Host': 'no-idea-what-this-is'}
+}
 
 
 // Create an Express app
 const app = express();
+
+fetch(url, options)
+.then((res) => res.json())
+.then((res) => console.log(res))
+.catch((err:any) => console.error('error' + err))
+
+app.get('/lol', (req:Request, res: Response) => {
+
+        // const response = fetch(url, {
+        //   method: 'get',
+        //   headers: {'Content-Type': 'application/json',
+        //             'Authorizaion': API_key}
+
+        // })
+
+        // const data = response;
+
+        // const response = fetch('https://github.com/');
+        // const body = await response.text();
+
+
+
+
+    })
+
 
 // Define a route handler for the root URL
 app.get('/hello', (req: Request, res: Response) => {
