@@ -5,10 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
+const morgan = require('morgan');
 const productRoutes = require('./api/routes/products');
 const ordersRoutes = require('./api/routes/orders');
+app.use(morgan('dev'));
 app.use('/products', productRoutes);
 app.use('/orders', ordersRoutes);
+app.use((req, res, next) => {
+    const error = new Error('Page not found');
+    res.status(404);
+    next(error);
+});
+app.use((error, req, res, next) => {
+    res.status(error instanceof HttpError ? error.status : 500).json({
+        message: error.message || 'Internal server error.'
+    });
+});
+class HttpError extends Error {
+    constructor(message, status) {
+        super(message);
+        this.status = status;
+    }
+}
 module.exports = app;
 // app.get('/', (req, res) => {
 //     res.send('Hello World');
